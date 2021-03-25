@@ -11,7 +11,7 @@ geneList <- res.rna.all$log2FoldChange
 names(geneList) <- res.rna.all$entrezid
 geneList <- sort(geneList, decreasing = TRUE)
 
-altered.noTSS.geneList <- read.table(file = "GeneHancer-TargetGenes.txt")
+altered.noTSS.geneList <- read.table(file = "data/GeneHancer-TargetGenes.txt")
 altered.noTSS.gene <- unique(as.character(na.omit(mapIds(EnsDb.Hsapiens.v75,keys = as.character(altered.noTSS.geneList$V1),column = "ENTREZID", 
                                                          keytype = "SYMBOL", multiVals = "first"))))
 

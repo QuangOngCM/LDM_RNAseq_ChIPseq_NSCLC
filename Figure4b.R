@@ -12,7 +12,7 @@ gene.data <- res.rna.all[res.rna.all$symbol == "EZH2",]
 gene_ID <- rownames(gene.data)
 gene_symbol <- as.character(gene.data$symbol)
 L2FC = round(gene.data$log2FoldChange, digits = 2)
-FDR = format(gene.data$padj, scientific = T)
+FDR = formatC(gene.data$padj, format = "e", digits = 2)
 
 gene_counts <- counts(rna.all[gene_ID,], normalized = TRUE)
 m <- data.frame(counts = as.numeric(gene_counts), group = as.factor(rna.all$condition), sub.group = as.factor(rna.all$case))
@@ -27,7 +27,7 @@ ggplot(m, aes(x = group, y = counts)) +
         panel.grid.major.x = element_blank(),
         legend.position = c(0.2, 0.8))+
   labs(x = "Samples from This Study", y = "Normalized Counts ", title =paste0("Normalized Expression of ",gene_symbol,
-                                                                         "\n L2FC= ",L2FC," (Tumor versus Normal)",
-                                                                         "\n FDR= ",FDR))+
+                                                                         "\n L2FC = ",L2FC," (Tumor versus Normal)",
+                                                                         "\n FDR = ",FDR))+
   scale_x_discrete(labels=c("Normal","Stroma","Tumor"))
 #dev.off()
